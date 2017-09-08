@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+    <context:annotation-config/>
+    <context:mbean-export/>
+    <context:property-placeholder location="classpath:application.properties"/>
+    <bean class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <property name="corePoolSize"
+                  value="#{T(Runtime).getRuntime().availableProcessors() * ${thread.cpu.coefficient}}"/>
+        <property name="maxPoolSize"
+                  value="#{T(Runtime).getRuntime().availableProcessors() * ${thread.cpu.coefficient}}"/>
+    </bean>
+
+    <bean id="dataSource" destroy-method="close" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.driverClassName}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="user" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="acquireIncrement" value="1" />
+        <property name="acquireRetryAttempts" value="3"/>
+        <property name="acquireRetryDelay" value="300" />
+        <property name="initialPoolSize" value="30" />
+        <property name="maxPoolSize" value="50" />
+        <property name="minPoolSize" value="30" />
+    </bean>
+
+    <bean id="testDao" class="com.acedemand.dao.TestDao" />
+
+    <bean id="parallelService" class="com.acedemand.batch.ParallelService"/>
+
+</beans>

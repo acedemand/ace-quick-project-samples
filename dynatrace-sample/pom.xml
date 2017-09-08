@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.acedemand</groupId>
+        <artifactId>acedemand.samples</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.acedemand</groupId>
+    <artifactId>dynatrace-sample</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>dynatrace</groupId>
+            <artifactId>rest-client</artifactId>
+            <scope>system</scope>
+            <version>1.0.0</version>
+            <systemPath>C:/dev/libraries/dynatrace/6.3/dtAutomation/6.3/dtAutomation.jar</systemPath>
+        </dependency>
+    </dependencies>
+
+    
+</project>
